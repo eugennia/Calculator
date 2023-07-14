@@ -5,89 +5,101 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.calculator.R
 import com.example.calculator.callbacks.OnButtonsFragmentClicked
 import com.example.calculator.databinding.FragmentButtonsBinding
 
 class ButtonsFragment : Fragment() {
 
     private lateinit var binding: FragmentButtonsBinding
-    private var result: Double? = null
+    private var result = StringBuilder()
 
-    private var onButtonsFragmentClick: OnButtonsFragmentClicked? = null
+    var onButtonsFragmentClick: OnButtonsFragmentClicked? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentButtonsBinding.inflate(inflater)
-        return inflater.inflate(R.layout.fragment_buttons, container, false)
+    ): View {
+        binding = FragmentButtonsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         numbersListener()
+        operationsListener()
     }
 
-    fun numbersListener() {
+    private fun numbersListener() {
         with(binding) {
             btn0.setOnClickListener {
-                btn0.text = result?.toString() + "0"
-                onButtonsFragmentClick?.onButtonFragmentClicked()
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(0))
             }
 
             btn1.setOnClickListener {
-                btn1.text = result?.toString() + "1"
-                onButtonsFragmentClick?.onButtonFragmentClicked()
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(1))
             }
 
             btn2.setOnClickListener {
-                btn2.text = result?.toString() + "2"
-                onButtonsFragmentClick?.onButtonFragmentClicked()
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(2))
             }
 
             btn3.setOnClickListener {
-                btn3.text = result?.toString() + "3"
-                onButtonsFragmentClick?.onButtonFragmentClicked()
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(3))
             }
 
             btn4.setOnClickListener {
-                btn4.text = result?.toString() + "4"
-                onButtonsFragmentClick?.onButtonFragmentClicked()
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(4))
 
             }
 
             btn5.setOnClickListener {
-                btn5.text = result?.toString() + "5"
-                onButtonsFragmentClick?.onButtonFragmentClicked()
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(5))
+            }
+
+            btn6.setOnClickListener {
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(6))
+            }
+
+            btn7.setOnClickListener {
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(7))
+            }
+
+            btn8.setOnClickListener {
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(8))
+            }
+
+            btn9.setOnClickListener {
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(9))
             }
         }
     }
 
-    fun operationsListener() {
-        binding.btnPlus.setOnClickListener {
-            add(1.0, 2.0)
-        }
+    private fun operationsListener() {
+        with(binding) {
+            btnPlus.setOnClickListener {
 
-        binding.btnMinus.setOnClickListener {
+            }
 
-        }
+            btnMinus.setOnClickListener {
 
-        binding.btnMultiply.setOnClickListener {
+            }
 
-        }
+            btnMultiply.setOnClickListener {
 
-        binding.btnDivide.setOnClickListener {
+            }
 
-        }
+            btnDivide.setOnClickListener {
 
-        binding.btnDelete.setOnClickListener {
+            }
 
-        }
+            btnDelete.setOnClickListener {
 
-        binding.btnDot.setOnClickListener {
+            }
 
+            btnDot.setOnClickListener {
+
+            }
         }
     }
 

@@ -8,9 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.calculator.R
 import com.example.calculator.callbacks.OnButtonsFragmentClicked
+import java.lang.StringBuilder
 
 class ResultFragment: Fragment(), OnButtonsFragmentClicked {
-    private var textView: TextView? = null
+
+    lateinit var resultText: TextView
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -20,10 +23,10 @@ class ResultFragment: Fragment(), OnButtonsFragmentClicked {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        resultText = view.findViewById(R.id.tv_result)
     }
 
-    override fun onButtonFragmentClicked() {
-        TODO("Not yet implemented")
+    override fun onButtonFragmentClicked(value: StringBuilder) {
+        resultText.text = value
     }
 }
