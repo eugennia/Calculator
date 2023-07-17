@@ -10,7 +10,7 @@ import com.example.calculator.databinding.FragmentButtonsBinding
 
 class ButtonsFragment : Fragment() {
 
-    private lateinit var binding: FragmentButtonsBinding
+    private var fragmentButtonsBinding: FragmentButtonsBinding? = null
     private var result = StringBuilder()
 
     var onButtonsFragmentClick: OnButtonsFragmentClicked? = null
@@ -20,7 +20,8 @@ class ButtonsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentButtonsBinding.inflate(inflater, container, false)
+        val binding = FragmentButtonsBinding.inflate(inflater, container, false)
+        fragmentButtonsBinding = binding
         return binding.root
     }
 
@@ -31,73 +32,73 @@ class ButtonsFragment : Fragment() {
     }
 
     private fun numbersListener() {
-        with(binding) {
-            btn0.setOnClickListener {
+        with(fragmentButtonsBinding) {
+            this?.btn0?.setOnClickListener {
                 onButtonsFragmentClick?.onButtonFragmentClicked(result.append(0))
             }
 
-            btn1.setOnClickListener {
+            this?.btn1?.setOnClickListener {
                 onButtonsFragmentClick?.onButtonFragmentClicked(result.append(1))
             }
 
-            btn2.setOnClickListener {
+            this?.btn2?.setOnClickListener {
                 onButtonsFragmentClick?.onButtonFragmentClicked(result.append(2))
             }
 
-            btn3.setOnClickListener {
+            this?.btn3?.setOnClickListener {
                 onButtonsFragmentClick?.onButtonFragmentClicked(result.append(3))
             }
 
-            btn4.setOnClickListener {
+            this?.btn4?.setOnClickListener {
                 onButtonsFragmentClick?.onButtonFragmentClicked(result.append(4))
 
             }
 
-            btn5.setOnClickListener {
+            this?.btn5?.setOnClickListener {
                 onButtonsFragmentClick?.onButtonFragmentClicked(result.append(5))
             }
 
-            btn6.setOnClickListener {
+            this?.btn6?.setOnClickListener {
                 onButtonsFragmentClick?.onButtonFragmentClicked(result.append(6))
             }
 
-            btn7.setOnClickListener {
+            this?.btn7?.setOnClickListener {
                 onButtonsFragmentClick?.onButtonFragmentClicked(result.append(7))
             }
 
-            btn8.setOnClickListener {
+            this?.btn8?.setOnClickListener {
                 onButtonsFragmentClick?.onButtonFragmentClicked(result.append(8))
             }
 
-            btn9.setOnClickListener {
+            this?.btn9?.setOnClickListener {
                 onButtonsFragmentClick?.onButtonFragmentClicked(result.append(9))
             }
         }
     }
 
     private fun operationsListener() {
-        with(binding) {
-            btnPlus.setOnClickListener {
+        with(fragmentButtonsBinding) {
+            this?.btnPlus?.setOnClickListener {
 
             }
 
-            btnMinus.setOnClickListener {
+            this?.btnMinus?.setOnClickListener {
 
             }
 
-            btnMultiply.setOnClickListener {
+            this?.btnMultiply?.setOnClickListener {
 
             }
 
-            btnDivide.setOnClickListener {
+            this?.btnDivide?.setOnClickListener {
 
             }
 
-            btnDelete.setOnClickListener {
+            this?.btnDelete?.setOnClickListener {
 
             }
 
-            btnDot.setOnClickListener {
+            this?.btnDot?.setOnClickListener {
 
             }
         }
@@ -105,5 +106,10 @@ class ButtonsFragment : Fragment() {
 
     private fun add(number1: Double, number2: Double) {
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        fragmentButtonsBinding = null
     }
 }
