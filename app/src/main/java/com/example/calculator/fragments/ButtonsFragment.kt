@@ -51,7 +51,6 @@ class ButtonsFragment : Fragment() {
 
             this?.btn4?.setOnClickListener {
                 onButtonsFragmentClick?.onButtonFragmentClicked(result.append(4))
-
             }
 
             this?.btn5?.setOnClickListener {
@@ -79,27 +78,28 @@ class ButtonsFragment : Fragment() {
     private fun operationsListener() {
         with(fragmentButtonsBinding) {
             this?.btnPlus?.setOnClickListener {
-
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append("+"))
             }
 
             this?.btnMinus?.setOnClickListener {
-
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append("-"))
             }
 
             this?.btnMultiply?.setOnClickListener {
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append("×"))
 
             }
 
             this?.btnDivide?.setOnClickListener {
-
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append("÷"))
             }
 
             this?.btnDelete?.setOnClickListener {
-
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.delete(0, result.length))
             }
 
             this?.btnDot?.setOnClickListener {
-
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append("."))
             }
         }
     }
