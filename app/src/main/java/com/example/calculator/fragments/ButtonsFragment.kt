@@ -11,6 +11,7 @@ import com.example.calculator.databinding.FragmentButtonsBinding
 class ButtonsFragment : Fragment() {
 
     private var fragmentButtonsBinding: FragmentButtonsBinding? = null
+    private var userInput = StringBuilder()
     private var result = StringBuilder()
 
     var onButtonsFragmentClick: OnButtonsFragmentClicked? = null
@@ -34,43 +35,43 @@ class ButtonsFragment : Fragment() {
     private fun numbersListener() {
         with(fragmentButtonsBinding) {
             this?.btn0?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(0))
+                onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append(0))
             }
 
             this?.btn1?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(1))
+                onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append(1))
             }
 
             this?.btn2?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(2))
+                onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append(2))
             }
 
             this?.btn3?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(3))
+                onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append(3))
             }
 
             this?.btn4?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(4))
+                onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append(4))
             }
 
             this?.btn5?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(5))
+                onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append(5))
             }
 
             this?.btn6?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(6))
+                onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append(6))
             }
 
             this?.btn7?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(7))
+                onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append(7))
             }
 
             this?.btn8?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(8))
+                onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append(8))
             }
 
             this?.btn9?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(9))
+                onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append(9))
             }
         }
     }
@@ -78,34 +79,54 @@ class ButtonsFragment : Fragment() {
     private fun operationsListener() {
         with(fragmentButtonsBinding) {
             this?.btnPlus?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append("+"))
+                if (isLastInputNumber())
+                    onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append("+"))
+                var calculation = userInput.split("+")
+                var calculationResult = calculation[0].toDouble() + calculation[1].toDouble()
+                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(calculationResult.toString()))
             }
 
             this?.btnMinus?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append("-"))
+                if (isLastInputNumber())
+                    onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append("-"))
             }
 
             this?.btnMultiply?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append("×"))
-
+                if (isLastInputNumber())
+                    onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append("×"))
             }
 
             this?.btnDivide?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append("÷"))
+                if (isLastInputNumber())
+                    onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append("÷"))
             }
 
             this?.btnDelete?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.delete(0, result.length))
+                onButtonsFragmentClick?.onButtonFragmentClicked(userInput.delete(0, userInput.length))
             }
 
             this?.btnDot?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append("."))
+                if (isLastInputNumber())
+                    onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append("."))
             }
         }
     }
 
     private fun add(number1: Double, number2: Double) {
 
+    }
+
+    private fun isLastInputNumber(): Boolean {
+        if (
+            userInput.last().toString() != "+" &&
+            userInput.last().toString() != "-" &&
+            userInput.last().toString() != "×" &&
+            userInput.last().toString() != "÷" &&
+            userInput.last().toString() != "."
+        ) {
+            return true
+        }
+        return false
     }
 
     override fun onDestroy() {

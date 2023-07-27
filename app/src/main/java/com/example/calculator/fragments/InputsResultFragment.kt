@@ -8,25 +8,27 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.calculator.R
 import com.example.calculator.callbacks.OnButtonsFragmentClicked
-import java.lang.StringBuilder
 
-class ResultFragment: Fragment(), OnButtonsFragmentClicked {
+class InputsResultFragment : Fragment(), OnButtonsFragmentClicked {
 
-    lateinit var resultText: TextView
+    lateinit var userInput: TextView
+    lateinit var result: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_result, container, false)
+        return inflater.inflate(R.layout.fragment_inputs_result, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        resultText = view.findViewById(R.id.tv_result)
+        userInput = view.findViewById(R.id.tv_user_input)
+        result = view.findViewById(R.id.tv_result)
     }
 
     override fun onButtonFragmentClicked(value: StringBuilder) {
-        resultText.text = value
+        userInput.text = value
+        result.text = value
     }
 }
