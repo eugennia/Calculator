@@ -37,12 +37,12 @@
         android:text="@string/three"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="@id/btn_2"
-        app:layout_constraintEnd_toStartOf="@id/btn_plus"
+        app:layout_constraintEnd_toStartOf="@id/btn_add"
         app:layout_constraintStart_toEndOf="@id/btn_2"
         app:layout_constraintTop_toTopOf="@id/btn_2" />
 
     <Button
-        android:id="@+id/btn_plus"
+        android:id="@+id/btn_add"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/operations"
@@ -85,12 +85,12 @@
         android:text="@string/six"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="@id/btn_5"
-        app:layout_constraintEnd_toStartOf="@id/btn_minus"
+        app:layout_constraintEnd_toStartOf="@id/btn_subtract"
         app:layout_constraintStart_toEndOf="@id/btn_5"
         app:layout_constraintTop_toTopOf="@id/btn_5" />
 
     <Button
-        android:id="@+id/btn_minus"
+        android:id="@+id/btn_subtract"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/operations"

@@ -78,46 +78,62 @@ class ButtonsFragment : Fragment() {
 
     private fun operationsListener() {
         with(fragmentButtonsBinding) {
-            this?.btnPlus?.setOnClickListener {
-                if (isLastInputNumber())
-                    onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append("+"))
-                var calculation = userInput.split("+")
-                var calculationResult = calculation[0].toDouble() + calculation[1].toDouble()
-                onButtonsFragmentClick?.onButtonFragmentClicked(result.append(calculationResult.toString()))
+            this?.btnAdd?.setOnClickListener {
+                appendOperation("+")
             }
 
-            this?.btnMinus?.setOnClickListener {
-                if (isLastInputNumber())
-                    onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append("-"))
+            this?.btnSubtract?.setOnClickListener {
+                appendOperation("-")
             }
 
             this?.btnMultiply?.setOnClickListener {
-                if (isLastInputNumber())
-                    onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append("×"))
+                appendOperation("×")
             }
 
             this?.btnDivide?.setOnClickListener {
-                if (isLastInputNumber())
-                    onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append("÷"))
+                appendOperation("÷")
             }
 
             this?.btnDelete?.setOnClickListener {
-                onButtonsFragmentClick?.onButtonFragmentClicked(userInput.delete(0, userInput.length))
+                onButtonsFragmentClick?.onButtonFragmentClicked(
+                    userInput.delete(
+                        0,
+                        userInput.length
+                    )
+                )
             }
 
             this?.btnDot?.setOnClickListener {
-                if (isLastInputNumber())
-                    onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append("."))
+                appendOperation(".")
             }
         }
     }
 
-    private fun add(number1: Double, number2: Double) {
+    private fun appendOperation(operation: String) {
+        if (isLastInputNumber())
+            onButtonsFragmentClick?.onButtonFragmentClicked(userInput.append(operation))
+    }
+
+    private fun add() {
+        var calculation = userInput.split("+")
+        var calculationResult = calculation[0].toDouble() + calculation[1].toDouble()
+        onButtonsFragmentClick?.onButtonFragmentClicked(result.append(calculationResult.toString()))
+    }
+
+    private fun subtract() {
+
+    }
+
+    private fun multiply() {
+
+    }
+
+    private fun divide() {
 
     }
 
     private fun isLastInputNumber(): Boolean {
-        if (
+        if (userInput.isNotEmpty() &&
             userInput.last().toString() != "+" &&
             userInput.last().toString() != "-" &&
             userInput.last().toString() != "×" &&

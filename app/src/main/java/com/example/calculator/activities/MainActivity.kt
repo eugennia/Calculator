@@ -16,7 +16,8 @@ class MainActivity : AppCompatActivity() {
         // TODO fix
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
 
         val fragmentResult = InputsResultFragment()
         val fragmentButtons = ButtonsFragment()
